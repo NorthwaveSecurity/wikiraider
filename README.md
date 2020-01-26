@@ -4,7 +4,7 @@ Wordlists based on the Wikipedia databases of certain countries. These wordlists
 
 ### Parsed databases
 
-* NL (dutch) - [download](https://raw.githubusercontent.com/tijme/wordlists/master/nlwiki-2019-03-25.txt)
+* NL (dutch) - [download](https://github.com/tijme/wordlists/raw/master/nlwiki-2019-03-25.txt)
 
 ### Example usage
 
@@ -13,3 +13,7 @@ Wordlists based on the Wikipedia databases of certain countries. These wordlists
 hashcat -m [HASH_MODE](https://hashcat.net/wiki/doku.php?id=hashcat) [NTDS_DUMP](https://medium.com/@bondo.mike/extracting-and-cracking-ntds-dit-2b266214f277) [WORDLIST](https://raw.githubusercontent.com/tijme/wordlists/master/nlwiki-2019-03-25.txt) -r [RULESET](https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule) -vvv
 
 ````hashcat -m 1000 dump.ntds -vvv ./nlwiki-2019-03-25.txt -r OneRuleToRuleThemAll.rule````
+
+### Parsing databases
+
+I will upload a Python script that is able to convert Wikipedia databases to wordlists soon.
