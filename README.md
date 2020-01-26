@@ -10,7 +10,7 @@ Wordlists based on the Wikipedia databases of certain countries. These wordlists
 
 **NTLM**
 
-hashcat -m [HASH_MODE](https://hashcat.net/wiki/doku.php?id=hashcat) [NTDS_DUMP](https://medium.com/@bondo.mike/extracting-and-cracking-ntds-dit-2b266214f277) [WORDLIST](https://raw.githubusercontent.com/tijme/wordlists/master/nlwiki-2019-03-25.txt) -r [RULESET](https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule) -vvv
+hashcat -m [HASH_MODE](https://hashcat.net/wiki/doku.php?id=hashcat#options) [NTDS_DUMP](https://medium.com/@bondo.mike/extracting-and-cracking-ntds-dit-2b266214f277) [WORDLIST](https://raw.githubusercontent.com/tijme/wordlists/master/nlwiki-2019-03-25.txt) -r [RULESET](https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule) -vvv
 
 ````hashcat -m 1000 dump.ntds -vvv ./nlwiki-2019-03-25.txt -r OneRuleToRuleThemAll.rule````
 
