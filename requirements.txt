@@ -1,0 +1,4 @@
+requests==2.23.0						# Make HTTP requests
+beautifulsoup4==4.8.2					# Parse HTML responses
+colorlog==4.1.0							# Extensive console logging
+tqdm==4.43.0							# Progressbar for downloads
