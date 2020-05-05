@@ -26,16 +26,8 @@ import bs4
 import requests
 import colorlog
 
+
 class ActionList:
-    """The Package class contains all the package related information (like the version number).
-
-    Attributes:
-        __name (str): Cached package name.
-        __description (str): Cached package description.
-        __alias (str): Cached package alias.
-        __version (str): Cached package version number (if initialized).
-
-    """
 
     def __init__(self, args):
         self.args = args
@@ -73,7 +65,7 @@ class ActionList:
                 # Dump may be private
                 continue
 
-            if not link.text.endswith('wiki') or len(link.text) > 7:
+            if not link.text.endswith('wiki') or len(link.text) > 10:
                 # Not a normal wiki (probably wiktionary or something)
                 continue
 

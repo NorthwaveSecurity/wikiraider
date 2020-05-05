@@ -23,9 +23,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import sys
 import argparse
-import colorlog
 import logging
+
+try:
+    import colorlog
+    import bs4
+    import tqdm
+    import requests
+except:
+    sys.exit('Please run `pip3 install -r requirements.txt` first.')
 
 from lib.helpers.PackageHelper import PackageHelper
 from lib.actions.ActionList import ActionList

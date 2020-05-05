@@ -25,29 +25,28 @@
 import os
 import re
 import bz2
+import tqdm
 import json
+import random
 import requests
 import colorlog
-import tqdm
 import xml.etree.cElementTree
+
+from lib.parser.Queue import Queue
+from lib.helpers.WriterHelper import WriterHelper
 
 
 class ActionParse:
-    """The Package class contains all the package related information (like the version number).
 
-    Attributes:
-        __name (str): Cached package name.
-        __description (str): Cached package description.
-        __alias (str): Cached package alias.
-        __version (str): Cached package version number (if initialized).
-
-    """
+    queue = Queue()
 
     def __init__(self, args):
         self.args = args
+        self.queue.start()
 
     def run(self):
         archive_urls = self.get_archive_urls()
+        xml_files = []
 
         for archive_url in archive_urls:
             archive_name = archive_url['key']
@@ -63,7 +62,12 @@ class ActionParse:
                 self.download_archive(archive_size, archive_url, archive_file)
 
             xml_file = self.extract_archive(archive_size, archive_name, archive_file)
+            xml_files.append(xml_file)
 
+        colorlog.getLogger().info('Iterating all of the XML files and pushing pages to queue. This might take a while...')
+        colorlog.getLogger().info('In the meantime the consumers are already processing the pages...')
+
+        for xml_file in xml_files:
             for event, element in xml.etree.cElementTree.iterparse(open(xml_file, 'r')):
                 if element.tag.endswith('page'):
                     title = element.find('.//{http://www.mediawiki.org/xml/export-0.10/}title')
@@ -72,12 +76,34 @@ class ActionParse:
 
                     element.clear()
 
-                    self.process_page(title, text)
-                    break
+                    self.on_page(title, text)
 
-    def process_page(self, title, text):
-        print('Processing:', title)
-        pass
+            colorlog.getLogger().info('Finished adding all pages of one of the XML files to the queue.')
+
+        self.on_finish()
+
+    def on_finish(self):
+        colorlog.getLogger().success('Added all pages to the queue.')
+        colorlog.getLogger().info('Waiting for consumers to have processed all pages. This might take even longer...')
+
+        self.queue.join()
+
+        colorlog.getLogger().success('Finished processing all pages')
+        colorlog.getLogger().info('Found a total of {} word(s).'.format(len(self.queue.results)))
+
+        if len(self.queue.results) >= 10:
+            colorlog.getLogger().info('Here are 10 of them {}.'.format(random.sample(self.queue.results, 10)))
+
+        colorlog.getLogger().info('Writing all words to a file...')
+        WriterHelper.write_to_txt(self.get_wiki_name(), self.queue.results)
+        colorlog.getLogger().success('Writing finished.')
+        colorlog.getLogger().success('We are done!')
+
+    def on_page(self, title, text):
+        self.queue.items.put((title, text))
+
+    def get_wiki_name(self):
+        return self.args.url.split('.org')[-1].strip('/').split('/')[0]
 
     def get_archive_urls(self):
         json_dumpstatus_url = '{}/dumpstatus.json'.format(self.args.url.strip('/'))
@@ -107,7 +133,7 @@ class ActionParse:
         return results
 
     def download_archive(self, size: int, url: str, archive_file: str):
-        colorlog.getLogger().info('Downloading {}'.format(url))
+        colorlog.getLogger().info('Downloading {}.'.format(url))
 
         with tqdm.tqdm(total=size) as progress:
             with requests.get(url, stream=True) as r:
@@ -118,12 +144,12 @@ class ActionParse:
                             f.write(chunk)
                             progress.update(8192)
 
-        colorlog.getLogger().success('Download finished')
+        colorlog.getLogger().success('Download finished.')
 
         return archive_file
 
     def extract_archive(self, size: int, archive_name: str, archive_file: str):
-        colorlog.getLogger().info('Extracting {}'.format(archive_name))
+        colorlog.getLogger().info('Extracting {}.'.format(archive_name))
 
         with tqdm.tqdm(total=size) as progress:
             with open(archive_file[0:-4], 'wb') as new_file:
@@ -133,5 +159,5 @@ class ActionParse:
                         new_file.write(decompressor.decompress(data))
                         progress.update(100 * 1024)
 
-        colorlog.getLogger().success('Extraction finished')
+        colorlog.getLogger().success('Extraction finished.')
         return archive_file[0:-4]
