@@ -2,6 +2,7 @@
 <p align="center">
     <img src="https://raw.finnwea.com/vector-shields-v2/?firstText=Wiki&secondText=Raider&scale=true" width="475" />
     <br/>
+    <br/>
     <b>Want to crack passwords faster by using a wordlist that fits your 'target audience'? Use WikiRaider.</b>
     <br/>
     <a href="#goal">Goal</a>
@@ -23,19 +24,19 @@
 </p>
 <hr>
 
-### Goal
+## Goal
 
 In the Northwave Red Team we crack password hashes during penetration tests and red team engagements, mostly using [hashcat](https://tools.kali.org/password-attacks/hashcat) and [john-the-ripper](https://tools.kali.org/password-attacks/john). Cracking these hashes based on certain wordlists is generally faster than brute-forcing the entire alphabet of possibilities. As long as the wordlist in use is related to the hashes you are cracking of course. But how do you find wordlists that are related to the passwords hashes you are trying to crack?
 
 **WikiRaider to the rescue!** WikiRaider enables you to generate wordlists based on country specific databases of Wikipedia. This will provide you with not only a list of words in a specific language, it will also provide you with e.g. country specific artists, TV shows, places, etc.
 
-### Wordlists
+## Wordlists
 
 *Parsing a Wikipedia database takes a while. If you've parsed a database, feel free to contribute by adding it to this list.*
 
 * NL (dutch) - [download](https://github.com/NorthwaveNL/wikiraider/raw/master/dist/nlwiki/nlwiki-2020-05-05.txt)
 
-### Parsing
+## Parsing
 
 **Listing Wikipedia databases**
 
@@ -47,7 +48,7 @@ Search (based on language code):
 
     ./wikiraider.py list -s EN
 
-*If your preferred database is not listed, Wikipedia might be exporting backups. Check the [backup index]([https://dumps.wikimedia.org/backup-index.html](https://dumps.wikimedia.org/backup-index.html)) to see if any backup exports are running.*
+*If your preferred database is not listed, Wikipedia might be exporting backups. Check the [backup index](https://dumps.wikimedia.org/backup-index.html) to see if any backup exports are running.*
 
 **Parsing a Wikipedia database**
 
@@ -57,7 +58,7 @@ Parse the Dutch Wikipedia database
 
 *Parsing a database will take a while and requires quite some processing power and memory. WikiRaider is multi-threaded and for performance it loads all words (as a hashset) into memory.*
 
-### Cracking
+## Cracking
 
 **NTLM**
 
@@ -67,14 +68,14 @@ hashcat -m [HASH_MODE](https://hashcat.net/wiki/doku.php?id=hashcat#options) [NT
 
 ````hashcat -m 1000 dump.ntds -vvv nlwiki-2020-05-05.txt -r OneRuleToRuleThemAll.rule````
 
-### Limitations
+## Limitations
 
 Currently only words that comply with the regex `[A-zÀ-ú]+` are gathered. This is due to the fact that I'm not familiar with languages outside of this alphabet space. In a future release of WikiRaider I will try to provide you with options to parse words outside of this alphabet space. If you have a proper solution, feel free to contribute.
 
-### Issues
+## Issues
 
 Issues or new features can be reported via the [GitHub issue tracker](https://github.com/NorthwaveNL/wikiraider/issues). Please make sure your issue or feature has not yet been reported by anyone else before submitting a new one.
 
-### License
+## License
 
 Wikiraider is open-sourced software licensed under the [MIT license](https://github.com/NorthwaveNL/wikiraider/blob/develop/LICENSE.md).
