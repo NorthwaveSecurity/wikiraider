@@ -1,8 +1,13 @@
 
 <p align="center">
     <img src="https://raw.finnwea.com/vector-shields-v2/?firstText=Wiki&secondText=Raider&scale=true" width="475" />
-    <br/>
-    <br/>
+</p>
+<p align="center">
+    <a href="https://github.com/NorthwaveNL/wikiraider/blob/master/LICENSE.md"><img src="https://raw.finnwea.com/vector-shields-v2/?firstText=License&secondText=MIT" /></a>
+    <a href="https://github.com/NorthwaveNL/wikiraider/releases"><img src="https://raw.finnwea.com/vector-shields-v1/?typeKey=SemverVersion&typeValue1=northwavenl&typeValue2=wikiraider&typeValue4=Release"></a>
+    <a href="https://travis-ci.org/github/NorthwaveNL/wikiraider"><img src="https://raw.finnwea.com/vector-shields-v1/?typeKey=TravisBuildStatus&typeValue1=northwavenl/wikiraider&typeValue2=master"></a>
+</p>
+<p align="center">
     <b>Want to crack passwords faster by using a wordlist that fits your 'target audience'? Use WikiRaider.</b>
     <br/>
     <a href="#goal">Goal</a>
