@@ -22,26 +22,57 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import time
 import pathlib
 import datetime
 
+
 class WriterHelper:
+    """The Writer class contains helper functions for writing wordlistts to files (in the given format)."""
 
     @staticmethod
     def make_directory(wiki_name):
-        path = './dist/{}'.format(wiki_name)
+        """Generate a directory for the given Wikipedia (e.g. `nlwiki` or `enwiki`) name.
+
+        Args:
+            wiki_name (str): The name of the wiki, e.g. `nlwiki`.
+
+        Returns:
+            str: The path to the created directory.
+
+        """
+
+        path = './wordlists/{}'.format(wiki_name)
+
         pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+
         return path
 
     @staticmethod
     def get_file_path(wiki_name):
+        """Get the patht to the file of the given Wikipedia (e.g. `nlwiki` or `enwiki`) name and current date.
+
+        Args:
+            wiki_name (str): The name of the wiki, e.g. `nlwiki`.
+
+        Returns:
+            str: The path to the wordlist file that may be generated.
+
+        """
+
         today = datetime.datetime.now()
-        path = './dist/{}/{}-{}.txt'.format(wiki_name, wiki_name, today.strftime('%Y-%m-%d'))
+        path = './wordlists/{}/{}-{}.txt'.format(wiki_name, wiki_name, today.strftime('%Y-%m-%d'))
         return path
 
     @staticmethod
     def write_to_txt(wiki_name, words):
+        """Write the given words set to a file that represents the given Wikipedia name.
+
+        Args:
+            wiki_name (str): The name of the wiki, e.g. `nlwiki`.
+            words (set): A set of words to be written to a file.
+
+        """
+
         WriterHelper.make_directory(wiki_name)
         path = WriterHelper.get_file_path(wiki_name)
 

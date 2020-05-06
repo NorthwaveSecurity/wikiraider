@@ -30,10 +30,11 @@ import json
 import random
 import requests
 import colorlog
+import pathlib
 import xml.etree.cElementTree
 
-from lib.parser.Queue import Queue
-from lib.helpers.WriterHelper import WriterHelper
+from wikiraider.parser.Queue import Queue
+from wikiraider.helpers.WriterHelper import WriterHelper
 
 
 class ActionParse:
@@ -45,6 +46,7 @@ class ActionParse:
         self.queue.start()
 
     def run(self):
+        self.create_tmp_directory()
         archive_urls = self.get_archive_urls()
         xml_files = []
 
@@ -54,7 +56,7 @@ class ActionParse:
             archive_url = archive_url['url']
 
             path = os.path.dirname(os.path.abspath(__file__))
-            archive_file = '{}/../../tmp/{}'.format(path, archive_name)
+            archive_file = '{}/../../.tmp/{}'.format(path, archive_name)
 
             if os.path.exists(archive_file) and os.path.getsize(archive_file) == archive_size:
                 colorlog.getLogger().info('Using cached XML file on disk: {}'.format(archive_name))
@@ -104,6 +106,9 @@ class ActionParse:
 
     def get_wiki_name(self):
         return self.args.url.split('.org')[-1].strip('/').split('/')[0]
+
+    def create_tmp_directory(self):
+        pathlib.Path('./.tmp').mkdir(parents=True, exist_ok=True)
 
     def get_archive_urls(self):
         json_dumpstatus_url = '{}/dumpstatus.json'.format(self.args.url.strip('/'))

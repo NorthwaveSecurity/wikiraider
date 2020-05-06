@@ -1,0 +1,13 @@
+os: linux
+language: python
+
+python:
+  - 3.6
+  - 3.7
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - python wikiraider.py list
+  - python wikiraider.py parse -u 'https://dumps.wikimedia.org/kiwiki/20200401'

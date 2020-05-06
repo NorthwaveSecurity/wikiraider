@@ -27,6 +27,11 @@ import sys
 import argparse
 import logging
 
+# Require Python 3.6
+if sys.version_info[0] != 3 or sys.version_info[1] < 6:
+    sys.exit('This script requires Python version 3.6 or higher.')
+
+# Ensure requirements are installed
 try:
     import colorlog
     import bs4
@@ -35,15 +40,17 @@ try:
 except:
     sys.exit('Please run `pip3 install -r requirements.txt` first.')
 
-from lib.helpers.PackageHelper import PackageHelper
-from lib.actions.ActionList import ActionList
-from lib.actions.ActionParse import ActionParse
+from wikiraider.helpers.PackageHelper import PackageHelper
+from wikiraider.actions.ActionList import ActionList
+from wikiraider.actions.ActionParse import ActionParse
 
 
 def require_arguments():
     """Get the arguments from CLI input.
+
     Returns:
         :class:`argparse.Namespace`: A namespace with all the parsed CLI arguments.
+
     """
 
     parser = argparse.ArgumentParser(
@@ -59,7 +66,7 @@ def require_arguments():
 
     # create the parser for the "b" command
     parser_parse = subparsers.add_parser('parse', help='Parse a single database')
-    parser_parse.add_argument('-u', '--url', type=str, help='One of the database URLs, for example `https://dumps.wikimedia.org/nlwiki/20200301`')
+    parser_parse.add_argument('-u', '--url', type=str, required=True, help='One of the database URLs, for example `https://dumps.wikimedia.org/nlwiki/20200301`')
 
     return parser.parse_args()
 

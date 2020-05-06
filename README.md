@@ -34,8 +34,8 @@ In the Northwave Red Team we crack password hashes during penetration tests and 
 
 *Parsing a Wikipedia database takes a while. If you've parsed a database, feel free to contribute by adding it to this list.*
 
-* NL (Dutch) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/dist/nlwiki/nlwiki-2020-05-05.txt)
-* ES (Spanish) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/dist/eswiki/eswiki-2020-05-05.txt)
+* NL (Dutch) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/nlwiki/nlwiki-2020-05-05.txt)
+* ES (Spanish) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/eswiki/eswiki-2020-05-05.txt)
 
 ## Parsing
 
@@ -65,7 +65,7 @@ Parse the Dutch Wikipedia database
 
 Lets say you want to crack NTLM hashes from a NTDS file. Using your WikiRaider wordlist, you can run the following command on `dump.ntds`. A rule (`OneRuleToRuleThemAll`) is used to forge the words to passwords.
 
-hashcat -m [HASH_MODE](https://hashcat.net/wiki/doku.php?id=hashcat#options) [NTDS_DUMP](https://medium.com/@bondo.mike/extracting-and-cracking-ntds-dit-2b266214f277) [WORDLIST](https://github.com/NorthwaveNL/wikiraider/blob/master/dist/nlwiki/nlwiki-2020-05-05.txt) -r [RULESET](https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule) -vvv
+hashcat -m [HASH_MODE](https://hashcat.net/wiki/doku.php?id=hashcat#options) [NTDS_DUMP](https://medium.com/@bondo.mike/extracting-and-cracking-ntds-dit-2b266214f277) [WORDLIST](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/nlwiki/nlwiki-2020-05-05.txt) -r [RULESET](https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule) -vvv
 
 ````hashcat -m 1000 dump.ntds -vvv nlwiki-2020-05-05.txt -r OneRuleToRuleThemAll.rule````
 

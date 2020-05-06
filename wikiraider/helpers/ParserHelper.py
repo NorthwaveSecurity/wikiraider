@@ -22,10 +22,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import re
 
+
 class ParserHelper:
+    """The Parser class contains helper functions for parsing Wikipedia elements to wordlists (hashsets).
+
+    Attributes:
+        title_delimiters (str): A regex with characters that do not belong to words. These characters are used to split the title into words.
+        text_delimiters (str): A regex with characters that do not belong to words. These characters are used to split the text into words.
+
+    """
 
     title_delimiters = r'''\\\w|\ |\,|\.|\ |\:|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\=|\=|\-|\`|\~|\[|\]|\{|\}|\;|\:|\"|\'|\/|\?|\.|\,|\>|\<|\|'''
 
@@ -33,26 +40,44 @@ class ParserHelper:
 
     @staticmethod
     def get_words_from_title(title):
+        """Convert the given title into a wordlist.
+
+        Args:
+            title (str): The title of a Wikipedia page.
+
+        Returns:
+            set: The words that were extracted from the title.
+
+        Note:
+            This function currently only supports words that comply with the regex `[A-zÀ-ú]+`.
+
+        """
 
         results = set()
 
-
         title = re.sub(ParserHelper.title_delimiters, ' ', title)
         results.update(re.findall(r'[A-zÀ-ú]+', title))
-
-        # results.update(re.split(ParserHelper.title_delimiters, title))
 
         return results
 
     @staticmethod
     def get_words_from_text(text):
+        """Convert the given text into a wordlist.
+
+        Args:
+            text (str): The contennt of a Wikipedia page.
+
+        Returns:
+            set: The words that were extracted from the content.
+
+        Note:
+            This function currently only supports words that comply with the regex `[A-zÀ-ú]+`.
+
+        """
 
         results = set()
 
         text = re.sub(ParserHelper.text_delimiters, ' ', text)
         results.update(re.findall(r'[A-zÀ-ú]+', text))
 
-        # results.update(re.split(ParserHelper.text_delimiters, text))
-
         return results
-

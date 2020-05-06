@@ -25,10 +25,22 @@
 import queue
 import threading
 
-from lib.parser.Consumer import Consumer
+from wikiraider.parser.Consumer import Consumer
 
 
 class Queue:
+    """The Parser class contains helper functions for parsing Wikipedia elements to wordlists (hashsets).
+
+    Attributes:
+        items (:class:`queue.Queue`): The actual native Python queue in use.
+        results (set): The words result (hash)set. This is thread safe.
+        finishing (bool): True when all items are added to the queue, but consumers are still busy processing them.
+        finished (bool): True when the queue has finished (no more items are added and the items are empty).
+        consumers (list): A list of created consumer classes.
+        consumer_threads (list): A list of created consumers threads, this reference can be used to join them later.
+        consumer_amount (int): The amount of consumers (threads) to use.
+
+    """
 
     items = queue.Queue()
 
@@ -42,20 +54,48 @@ class Queue:
 
     consumer_threads = []
 
-    consumer_amount = 10
+    consumer_amount = None
 
     def __init__(self, consumer_amount=5):
+        """Initialize the queue in idle state.
+
+        Args:
+            consumer_amount (int): The amount of consumers (threads) to use.
+
+        """
+
         self.consumer_amount = consumer_amount
 
     def start(self):
+        """Start all consumers and make them parse items on the queue."""
+
         self.create_consumers()
 
         for consumer in self.consumers:
             consumer_thread = threading.Thread(target=consumer.run)
-            self.consumer_threads.append(consumer_thread)
             consumer_thread.start()
 
+            self.consumer_threads.append(consumer_thread)
+
+    def create_consumers(self):
+        """Create all the consumer classes (not yet the threads).
+
+        Note:
+            Consumers are created using an alias (int) to distinguish them from each other.
+
+        """
+
+        for i in range(0, self.consumer_amount):
+            self.consumers.append(Consumer(i, self))
+
     def join(self):
+        """Wait for all consumers to finish.
+
+        Note:
+            First join the items (:class:`queue.Queue`) to make sure all items have been parsed. Then join all the threads.
+
+        """
+
         # Wait until queue is empty
         self.items.join()
 
@@ -68,7 +108,3 @@ class Queue:
 
         # We're finished
         self.finished = True
-
-    def create_consumers(self):
-        for i in range(0, self.consumer_amount):
-            self.consumers.append(Consumer(i, self))

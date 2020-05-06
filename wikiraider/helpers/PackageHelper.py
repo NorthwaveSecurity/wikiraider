@@ -23,8 +23,8 @@
 # SOFTWARE.
 
 import os
-import re
 import pkg_resources
+
 
 class PackageHelper:
     """The Package class contains all the package related information (like the version number).
@@ -37,9 +37,9 @@ class PackageHelper:
 
     """
 
-    __name = "Wiki Raider"
+    __name = "WikiRaider"
 
-    __description = "Generate wordlists based on the Wikipedia databases of a certain country."
+    __description = "Want to crack passwords faster by using a wordlist that fits your 'target audience'? Use WikiRaider."
 
     __alias = "wikiraider"
 

@@ -28,13 +28,28 @@ import colorlog
 
 
 class ActionList:
+    """One of the actions that a user can run. The `list` action lists available Wikipedia databases."""
 
     def __init__(self, args):
+        """Initialize the `list` action with the given arguments.
+
+        Args:
+            args (:class:`argparse.Namespace`): The command line arguments.
+
+        """
+
         self.args = args
 
     def run(self):
+        """Run the `list` action.
+
+        Note:
+            This function logs all Wikipedia dumps to the console.
+
+        """
+
         search_info = 'matching `{}`'.format(self.args.search) if self.args.search else ''
-        colorlog.getLogger().info('Listing all Wikimedia dumps {}...'.format(search_info))
+        colorlog.getLogger().info('Listing all Wikipedia dumps {}...'.format(search_info))
 
         dumps = self.get_dumps()
 
@@ -42,6 +57,16 @@ class ActionList:
             colorlog.getLogger().success('Name: {}, URL: {}'.format(dump['name'], dump['url']))
 
     def get_dumps(self):
+        """Get a list of Wikipedia databases based on the search query from the CLI argumentst.
+
+        Returns:
+            list: The list of Wikipedia databases found.
+
+        Note:
+            It might occur that the Wikipedia backups are currently in progress. In that case this function will only return the finished backups.
+
+        """
+
         response = requests.get('{}/backup-index.html'.format(self.args.cdn))
         soup = bs4.BeautifulSoup(response.text, features="html.parser")
 
