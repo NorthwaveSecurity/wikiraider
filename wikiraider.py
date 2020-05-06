@@ -27,9 +27,9 @@ import sys
 import argparse
 import logging
 
-# Require Python 3.6
-if sys.version_info[0] != 3 or sys.version_info[1] < 6:
-    sys.exit('This script requires Python version 3.6 or higher.')
+# Require Python 3.7
+if sys.version_info[0] != 3 or sys.version_info[1] < 7:
+    sys.exit('This script requires Python version 3.7 or higher.')
 
 # Ensure requirements are installed
 try:
