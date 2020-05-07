@@ -38,14 +38,34 @@ from wikiraider.helpers.WriterHelper import WriterHelper
 
 
 class ActionParse:
+    """One of the actions that a user can run. The `parse` action parses a Wikipedia database of a specific country to a wordlist.
+
+    Attributes:
+        queue (:class:`wikiraider.parser.Queue`): The queue to use for producers and consumers of Wikipedia pages.
+
+    """
 
     queue = Queue()
 
     def __init__(self, args):
+        """Initialize the `parse` action with the given arguments and start parsing.
+
+        Args:
+            args (:class:`argparse.Namespace`): The command line arguments.
+
+        """
+
         self.args = args
         self.queue.start()
 
     def run(self):
+        """Run the `parse` action.
+
+        Note:
+            This function will download, extract and parse all XML files related to the database. It will convert those to a wordlist and write it to disk.
+
+        """
+
         self.create_tmp_directory()
         archive_urls = self.get_archive_urls()
         xml_files = []
@@ -85,6 +105,13 @@ class ActionParse:
         self.on_finish()
 
     def on_finish(self):
+        """Called when the queue is empty and the producers stopped producing new queue items.
+
+        Note:
+            On finish we write all words in the words set to a file.
+
+        """
+
         colorlog.getLogger().success('Added all pages to the queue.')
         colorlog.getLogger().info('Waiting for consumers to have processed all pages. This might take even longer...')
 
@@ -98,19 +125,47 @@ class ActionParse:
 
         colorlog.getLogger().info('Writing all words to a file...')
         WriterHelper.write_to_txt(self.get_wiki_name(), self.queue.results)
-        colorlog.getLogger().success('Writing finished.')
+        colorlog.getLogger().success('Writing finished. Wrote file to the `wordlists` folder.')
         colorlog.getLogger().success('We are done!')
 
     def on_page(self, title, text):
+        """Put the given title and text/content on the queue to be consumed.
+
+        Args:
+            title (class:`xml.etree.ElementTree.Element`): The title of the Wikipedia page.
+            text (class:`xml.etree.ElementTree.Element`): The content of the Wikipedia page.
+
+
+        """
+
         self.queue.items.put((title, text))
 
     def get_wiki_name(self):
+        """Construct the name of the Wikipedia database based on the CLI arguments.
+
+        Returns:
+            str: The Wikipedia name, e.g. 'enwiki'.
+
+        """
+
         return self.args.url.split('.org')[-1].strip('/').split('/')[0]
 
     def create_tmp_directory(self):
+        """Create a temporary (hidden, prefixed with a dot) directory to download Wikipedia backups to."""
+
         pathlib.Path('./.tmp').mkdir(parents=True, exist_ok=True)
 
     def get_archive_urls(self):
+        """Retrieve all links to XML files of the Wikipedia database that we're trying to parse.
+
+        Returns:
+            list: A list of objects containing links to backup segments, including their size.
+
+        Note:
+            A list is returned since Wikipedia segments the backups in ~300MB parts.
+
+        """
+
         json_dumpstatus_url = '{}/dumpstatus.json'.format(self.args.url.strip('/'))
         response_object = requests.get(json_dumpstatus_url)
         response = json.loads(response_object.text)
@@ -138,6 +193,18 @@ class ActionParse:
         return results
 
     def download_archive(self, size: int, url: str, archive_file: str):
+        """Download (chunked) the given archive to disk.
+
+        Args:
+            size (int): The size of the archive to download, in bytes. Used to calculate the download progress.
+            url (str): The URL to the archive file to download.
+            archive_file (str): Where to save the downloaded archive.
+
+        Returns:
+            str: The path to the downloaded file that was stored on disk (based on the given `archive_file` argument.
+
+        """
+
         colorlog.getLogger().info('Downloading {}.'.format(url))
 
         with tqdm.tqdm(total=size) as progress:
@@ -154,6 +221,18 @@ class ActionParse:
         return archive_file
 
     def extract_archive(self, size: int, archive_name: str, archive_file: str):
+        """Extract the given archive to disk.
+
+        Args:
+            size (int): The size of the archive to extract, in bytes. Used to calculate the download progress.
+            archive_name (str): The name of the archive to extract (only used for CLI logging).
+            archive_file (str): The path to the archive to extract.
+
+        Returns:
+            str: The path to the extracted archive. This is basically the `archive_file` argument value minus the archive extension.
+
+        """
+
         colorlog.getLogger().info('Extracting {}.'.format(archive_name))
 
         with tqdm.tqdm(total=size) as progress:
