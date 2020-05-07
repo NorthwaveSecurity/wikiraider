@@ -29,7 +29,7 @@ from wikiraider.parser.Consumer import Consumer
 
 
 class Queue:
-    """The Parser class contains helper functions for parsing Wikipedia elements to wordlists (hashsets).
+    """The Wikipedia pages queue. Used to track items (title/content) and the consumers parsing these items.
 
     Attributes:
         items (:class:`queue.Queue`): The actual native Python queue in use.
