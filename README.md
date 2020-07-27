@@ -39,6 +39,7 @@ In the Northwave Red Team we crack password hashes during penetration tests and 
 
 *Parsing a Wikipedia database takes a while. If you've parsed a database, feel free to contribute by adding it to this list.*
 
+* DE (German) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/dewiki/dewiki-2020-07-27.txt)
 * EN (English) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/enwiki/enwiki-2020-05-07.txt)
 * ES (Spanish) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/eswiki/eswiki-2020-05-05.txt)
 * NL (Dutch) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/nlwiki/nlwiki-2020-05-05.txt)
