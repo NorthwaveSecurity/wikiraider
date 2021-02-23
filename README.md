@@ -39,10 +39,21 @@ In the Northwave Red Team we crack password hashes during penetration tests and 
 
 *Parsing a Wikipedia database takes a while. If you've parsed a database, feel free to contribute by adding it to this list.*
 
-* DE (German) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EQWaUMooHJlKqoVKArMJp2sBxzCtdVPNEWQkDTy5Qt2z5Q?e=5AwBgA&download=1)
-* EN (English) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EfezyXZilsFFpEpRgvWSJ40BtG5VgklAyZtuRjUylWqOWA?e=DuGj6k&download=1)
-* ES (Spanish) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/ET2MwgudOYVLtActeZcuC14BQRpYRy_cSeVcF0OS8NexhQ?e=Jl4RjB&download=1)
-* NL (Dutch) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EVag_OlaZLZCrV2aYVpejmUBA0Q52aeei4wYW1mL8X3UUw?e=owwMab&download=1)
+**DE (German) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EQWaUMooHJlKqoVKArMJp2sBxzCtdVPNEWQkDTy5Qt2z5Q?e=5AwBgA&download=1)**
+
+    wget -O dewiki-2020-07-27 https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EQWaUMooHJlKqoVKArMJp2sBxzCtdVPNEWQkDTy5Qt2z5Q?e=5AwBgA&download=1
+
+**EN (English) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EfezyXZilsFFpEpRgvWSJ40BtG5VgklAyZtuRjUylWqOWA?e=DuGj6k&download=1)**
+
+    wget -O enwiki-2020-05-07 https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EfezyXZilsFFpEpRgvWSJ40BtG5VgklAyZtuRjUylWqOWA?e=DuGj6k&download=1
+
+**ES (Spanish) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/ET2MwgudOYVLtActeZcuC14BQRpYRy_cSeVcF0OS8NexhQ?e=Jl4RjB&download=1)**
+
+    wget -O eswiki-2020-05-05 https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/ET2MwgudOYVLtActeZcuC14BQRpYRy_cSeVcF0OS8NexhQ?e=Jl4RjB&download=1
+
+**NL (Dutch) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EVag_OlaZLZCrV2aYVpejmUBA0Q52aeei4wYW1mL8X3UUw?e=owwMab&download=1)**
+
+    wget -O nlwiki-2020-05-05 https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EVag_OlaZLZCrV2aYVpejmUBA0Q52aeei4wYW1mL8X3UUw?e=owwMab&download=1
 
 ## Parsing
 
