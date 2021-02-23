@@ -4,8 +4,8 @@
 </p>
 <p align="center">
     <a href="https://github.com/NorthwaveNL/wikiraider/blob/master/LICENSE.md"><img src="https://raw.finnwea.com/vector-shields-v2/?firstText=License&secondText=MIT" /></a>
-    <a href="https://github.com/NorthwaveNL/wikiraider/releases"><img src="https://raw.finnwea.com/vector-shields-v1/?typeKey=SemverVersion&typeValue1=northwavenl&typeValue2=wikiraider&typeValue4=Release&cache=1"></a>
-    <a href="https://travis-ci.org/github/NorthwaveNL/wikiraider"><img src="https://raw.finnwea.com/vector-shields-v1/?typeKey=TravisBuildStatus&typeValue1=northwavenl/wikiraider&typeValue2=master&cache=1"></a>
+    <a href="https://github.com/NorthwaveNL/wikiraider/releases"><img src="https://raw.finnwea.com/vector-shields-v1/?typeKey=SemverVersion&typeValue1=northwavesecurity&typeValue2=wikiraider&typeValue4=Release&cache=1"></a>
+    <a href="https://travis-ci.org/github/NorthwaveNL/wikiraider"><img src="https://raw.finnwea.com/vector-shields-v1/?typeKey=TravisBuildStatus&typeValue1=northwavesecurity/wikiraider&typeValue2=master&cache=1"></a>
 </p>
 <p align="center">
     <b>Want to crack passwords faster by using a wordlist that fits your 'target audience'? Use WikiRaider.</b>
@@ -39,10 +39,10 @@ In the Northwave Red Team we crack password hashes during penetration tests and 
 
 *Parsing a Wikipedia database takes a while. If you've parsed a database, feel free to contribute by adding it to this list.*
 
-* DE (German) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/dewiki/dewiki-2020-07-27.txt)
-* EN (English) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/enwiki/enwiki-2020-05-07.txt)
-* ES (Spanish) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/eswiki/eswiki-2020-05-05.txt)
-* NL (Dutch) - [download](https://github.com/NorthwaveNL/wikiraider/blob/master/wordlists/nlwiki/nlwiki-2020-05-05.txt)
+* DE (German) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EQWaUMooHJlKqoVKArMJp2sBxzCtdVPNEWQkDTy5Qt2z5Q?e=5AwBgA&download=1)
+* EN (English) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EfezyXZilsFFpEpRgvWSJ40BtG5VgklAyZtuRjUylWqOWA?e=DuGj6k&download=1)
+* ES (Spanish) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/ET2MwgudOYVLtActeZcuC14BQRpYRy_cSeVcF0OS8NexhQ?e=Jl4RjB&download=1)
+* NL (Dutch) - [download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EVag_OlaZLZCrV2aYVpejmUBA0Q52aeei4wYW1mL8X3UUw?e=owwMab&download=1)
 
 ## Parsing
 

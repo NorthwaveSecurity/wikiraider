@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:86e4bd109639dcfd9a51115942b68a98d007962d0230e76eecb6d94894325227
-size 188
+requests==2.23.0						# Make HTTP requests
+beautifulsoup4==4.8.2					# Parse HTML responses
+colorlog==4.1.0							# Extensive console logging
+tqdm==4.43.0							# Progressbar for downloads
