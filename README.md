@@ -55,6 +55,10 @@ In the Northwave Red Team we crack password hashes during penetration tests and 
 
     wget -O nlwiki-2020-05-05 https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EVag_OlaZLZCrV2aYVpejmUBA0Q52aeei4wYW1mL8X3UUw?e=owwMab&download=1
 
+**PT (Portuguese), 49MB ([download](https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EaoW0iwbv5lEsvlJe4pYSCIBkjuAKSC_byDWRRjAL0z6TQ?e=73dWNR&download=1))**
+
+    wget -O ptwiki-2021-02-24 https://northwave-my.sharepoint.com/:t:/g/personal/tijme_gommers_northwave_nl/EaoW0iwbv5lEsvlJe4pYSCIBkjuAKSC_byDWRRjAL0z6TQ?e=73dWNR&download=1
+
 ## Parsing
 
 **Listing Wikipedia databases**
