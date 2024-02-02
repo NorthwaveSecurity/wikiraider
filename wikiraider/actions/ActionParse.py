@@ -90,7 +90,7 @@ class ActionParse:
         colorlog.getLogger().info('In the meantime the consumers are already processing the pages...')
 
         for xml_file in xml_files:
-            for event, element in xml.etree.cElementTree.iterparse(open(xml_file, 'r')):
+            for event, element in xml.etree.cElementTree.iterparse(open(xml_file, 'r', encoding='utf-8', errors='ignore')):
                 if element.tag.endswith('page'):
                     title = element.find('.//{http://www.mediawiki.org/xml/export-0.10/}title')
                     revision = element.find('.//{http://www.mediawiki.org/xml/export-0.10/}revision')
@@ -121,7 +121,7 @@ class ActionParse:
         colorlog.getLogger().info('Found a total of {} word(s).'.format(len(self.queue.results)))
 
         if len(self.queue.results) >= 10:
-            colorlog.getLogger().info('Here are 10 of them {}.'.format(random.sample(self.queue.results, 10)))
+            colorlog.getLogger().info('Here are 10 of them {}.'.format(random.sample(list(self.queue.results), 10)))
 
         colorlog.getLogger().info('Writing all words to a file...')
         WriterHelper.write_to_txt(self.get_wiki_name(), self.queue.results)
