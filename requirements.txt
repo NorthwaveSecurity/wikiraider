@@ -1,4 +1,5 @@
-requests==2.23.0						# Make HTTP requests
-beautifulsoup4==4.8.2					# Parse HTML responses
-colorlog==4.1.0							# Extensive console logging
-tqdm==4.43.0							# Progressbar for downloads
+requests==2.31.0						# Make HTTP requests
+beautifulsoup4==4.12.3			# Parse HTML responses
+colorlog==6.8.2							# Extensive console logging
+tqdm==4.66.1							  # Progressbar for downloads
+setuptools==69.0.3
